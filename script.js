@@ -1,5 +1,7 @@
 "use strict";
 // selecting elements
+const Elplayer1 = document.querySelector(".player--0");
+const Elplayer2 = document.querySelector(".player--1");
 const player1score = document.getElementById("score--0");
 const player2score = document.getElementById("score--1");
 const currentscrplayer1 = document.getElementById("current--0");
@@ -13,8 +15,9 @@ player1score.textContent = 0;
 player2score.textContent = 0;
 DiceEL.classList.add("hidden");
 
+const allscores = [0, 0];
 let currentscore = 0;
-
+let activeplayer = 0;
 // functionality for rolling dice
 RollButton.addEventListener("click", function () {
   //generating random dice value
@@ -28,9 +31,17 @@ RollButton.addEventListener("click", function () {
 
   if (dicevalue !== 1) {
     currentscore += dicevalue;
-    currentscrplayer1.textContent = currentscore;
-  } else {
+    document.getElementById(`current--${activeplayer}`).textContent =
+      currentscore;
+  }
+  // switching the current player
+  else {
     currentscore = 0;
-    currentscrplayer1.textContent = currentscore;
+    document.getElementById(`current--${activeplayer}`).textContent =
+      currentscore;
+    (activescore == activescore) === 0 ? 1 : 0;
+    // currentscrplayer1.textContent = currentscore;
+    Elplayer1.classList.toggle("player--active");
+    Elplayer2.classList.toggle("player--active");
   }
 });
